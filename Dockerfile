@@ -11,4 +11,4 @@ ENV PORT 3000
 EXPOSE ${PORT}
 # CMD ["npm", "index.js"]
 # run using nodemon script specified in package.json
-CMD ["npm", "run", "dev"]
+CMD ["node", "index.js"]

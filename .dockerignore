@@ -4,3 +4,5 @@ Dockerfile
 .dockerignore
 .git
 .gitignore
+# ignore all docker compose files
+docker-compose*

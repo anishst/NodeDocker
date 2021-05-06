@@ -36,6 +36,16 @@ A simple express app
 - run app: ```docker-compose up -d```
 - rebuild image and run app : ```docker-compose up -d --build```
 - remove app and volumes: ```docker-compose down -v```
+
+### using docker compose with multiple compose files
+
+- run app for development; you can make live edits with this one: 
+    - run: ```docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d```
+    - stop: ```docker-compose -f docker-compose.yml -f docker-compose.dev.yml down -v```
+- run app for prod env: 
+    - run: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d```
+    - run with forcing a new image build: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build```
+    - stop: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml down -v```
 ## Video Tutorial
 
 - [DevOps with Docker](https://www.youtube.com/watch?v=9zUHg7xjIqQ)
