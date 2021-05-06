@@ -8,4 +8,6 @@ RUN npm install
 COPY . ./
 # only for documenation; does not open 3000
 EXPOSE 3000
-CMD ["node", "index.js"]
+# CMD ["npm", "index.js"]
+# run using nodemon script specified in package.json
+CMD ["npm", "run", "dev"]
