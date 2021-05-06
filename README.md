@@ -22,8 +22,20 @@ A simple express app
         ```
     - if you don't have local node_modules folder then use:
         ```docker run --name node-app -d -v $(pwd):/app -v /app/node_modules -p 3000:3000 node-app-image```
+    - OPTIONAL to make app volume read-only:  ```docker run --name node-app -d -v $(pwd):/app:ro -v /app/node_modules -p 3000:3000 node-app-image```
+### Port Mapping
+- If you need to change default port of node app to 4000: ``` docker run --name node-app -v $(pwd):/app -v /app/node_modules --env PORT=4000 -d -p 3000:4000 node-app-image```
+- read port from .env file: 
+- If you need to change default port of node app to 4000 using env file: ``` docker run --name node-app -v $(pwd):/app -v /app/node_modules --env-file ./.env -d -p 3000:4000 node-app-image```
+    - to verify: ```docker exec -it node-app bash``` and they use ```printenv``` to see the port var
+### Inspect Contents
 - inspect contents: ```docker exec -it node-app bash```
 
+### using docker compose
+
+- run app: ```docker-compose up -d```
+- rebuild image and run app : ```docker-compose up -d --build```
+- remove app and volumes: ```docker-compose down -v```
 ## Video Tutorial
 
 - [DevOps with Docker](https://www.youtube.com/watch?v=9zUHg7xjIqQ)
