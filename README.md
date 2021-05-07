@@ -1,10 +1,24 @@
-# NodeDocker
-A simple express app 
+# DevOps with Node and Docker
+A simple express app to test out DevOps best practices
 
+Uses below:
+- [Node JS](https://nodejs.org/en/)
+- [express](https://expressjs.com/)
+- [mongo db](https://www.mongodb.com/)
+- [mongo express](https://github.com/mongo-express/mongo-express) - db admin console
 
 ## Docker Usage
 
 - [Node Image](https://hub.docker.com/_/node)
+- [Mongo Image](https://hub.docker.com/_/mongo)
+    - inspect: ```docker exec -it nodedocker_mongo_1 bash```
+        -  commands
+            - connect: ```mongo -u "anish" -p "mypassword"```
+            - list dbs: ```show dbs```
+            - create db: ```use mydb```
+            -  db.books.insert({"name": "Python"})
+            - db.books.find()
+    - connect quickly: ```docker exec -it nodedocker_mongo_1 mongo -u "anish" -p "mypassword" ```
 
 - build ```docker build -t node-app-image .```
 - run ```docker run --name node-app -d -p 3000:3000 node-app-image```
@@ -37,15 +51,20 @@ A simple express app
 - rebuild image and run app : ```docker-compose up -d --build```
 - remove app and volumes: ```docker-compose down -v```
 
-### using docker compose with multiple compose files
+## Using docker compose with multiple compose files
 
+### For Development
 - run app for development; you can make live edits with this one: 
-    - run: ```docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d```
-    - stop: ```docker-compose -f docker-compose.yml -f docker-compose.dev.yml down -v```
+- run: ```docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d```
+- stop: ```docker-compose -f docker-compose.yml -f docker-compose.dev.yml down```
+- prune unused volumes: ``` docker volume prune```
+- you can view mongo express here: [http://localhost:8081/](http://localhost:8081/)
+
+### For Production
 - run app for prod env: 
-    - run: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d```
-    - run with forcing a new image build: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build```
-    - stop: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml down -v```
+- run: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d```
+- run with forcing a new image build: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build```
+- stop: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml down -v```
 ## Video Tutorial
 
 - [DevOps with Docker](https://www.youtube.com/watch?v=9zUHg7xjIqQ)

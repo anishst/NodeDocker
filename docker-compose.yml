@@ -8,3 +8,13 @@ services:
             - "3000:3000"
         environment:
             - PORT=3000
+    mongo:
+        image: mongo
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: anish
+            MONGO_INITDB_ROOT_PASSWORD: mypassword
+        volumes: 
+            # named volume; must be declared in volumes section
+            - mongo-db:/data/db         
+volumes: 
+    mongo-db:
