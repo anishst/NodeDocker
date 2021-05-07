@@ -59,6 +59,7 @@ Uses below:
 - run: ```docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d```
 - stop: ```docker-compose -f docker-compose.yml -f docker-compose.dev.yml down```
 - prune unused volumes: ``` docker volume prune```
+- to test retry logic use this by only starting node-app:  ```docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --no-deps node-app```
 - you can view mongo express here: [http://localhost:8081/](http://localhost:8081/)
 
 ### For Production
