@@ -6,7 +6,8 @@ Uses below:
 - [express](https://expressjs.com/)
 - [mongo db](https://www.mongodb.com/)
 - [mongo express](https://github.com/mongo-express/mongo-express) - db admin console
-
+- [mongoose](https://www.npmjs.com/package/mongoose)
+    - ```npm install mongoose```
 ## Docker Usage
 
 - [Node Image](https://hub.docker.com/_/node)
