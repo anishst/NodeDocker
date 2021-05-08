@@ -67,6 +67,21 @@ Uses below:
 - run: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d```
 - run with forcing a new image build: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build```
 - stop: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml down -v```
+
+## API tests
+
+- get : http://localhost:3000/api/v1/posts
+- new post: http://localhost:3000/api/v1/posts
+    - from post man do POST request: Body> raw > json
+        ```json
+        {
+            "title": "My node post",
+            "body": "my node post body  "
+        }
+        ```
+- http://localhost:3000/api/v1/posts/6095cbd4fa2dc4001f1ae792
+- path test: http://localhost:3000/api/v1/posts/6095cf242731b80064119567
+
 ## Video Tutorial
 
 - [DevOps with Docker](https://www.youtube.com/watch?v=9zUHg7xjIqQ)
