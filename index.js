@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose');
-const redis = require('redis')
+const redis = require('redis');
+const cors = require("cors");
 const session = require('express-session')
 let RedisStore = require("connect-redis")(session);
 
@@ -49,7 +50,7 @@ connnectWithRetry();
 
 // REDIS related settings
 app.enable("trust proxy");
-// app.use(cors({}));
+app.use(cors({}));
 // OPTIONAL; https://expressjs.com/en/guide/behind-proxies.html
 app.enable("trust proxy")
 app.use(

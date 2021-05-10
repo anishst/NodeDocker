@@ -14,6 +14,9 @@ Uses below:
 - [express-session](https://www.npmjs.com/package/express-session) 
     - [connect-redis](https://www.npmjs.com/package/connect-redis)
     - ```npm install redis connect-redis express-session```
+- [cors](https://expressjs.com/en/resources/middleware/cors.html)
+    - ```npm install cors```
+    - to enable communication between domains
 ## Docker Usage
 
 - [Node Image](https://hub.docker.com/_/node)
