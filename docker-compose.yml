@@ -1,11 +1,16 @@
 # common settings for all environments
 version: "3"
 services: 
+    nginx:
+        image: nginx:stable-alpine 
+        depends_on: 
+            - node-app
+        volumes: 
+            # ovveride default nginx template and use mine
+            - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     node-app: 
         # build using dockerfile in current dir
         build: .
-        ports:
-            - "3000:3000"
         environment:
             - PORT=3000
         depends_on: 

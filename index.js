@@ -50,6 +50,8 @@ connnectWithRetry();
 // REDIS related settings
 app.enable("trust proxy");
 // app.use(cors({}));
+// OPTIONAL; https://expressjs.com/en/guide/behind-proxies.html
+app.enable("trust proxy")
 app.use(
   session({
     store: new RedisStore({ client: redisClient }),

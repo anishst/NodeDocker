@@ -1,5 +1,9 @@
 version: "3"
 services: 
+    nginx:
+        ports: 
+            # serve on port 80 in prod
+            - "80:80"
     node-app: 
         build: 
             # location of dockerfile

@@ -37,7 +37,8 @@ Uses below:
             "{\"cookie\":{\"originalMaxAge\":30000,\"expires\":\"2021-05-10T13:26:40.508Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"user\":{\"_id\":\"60993375bb1356001fbe0aa1\",\"username\":\"anish2\",\"password\":\"$2a$12$hVpYN4t6G4pzh/Zdazj71.B.ebALoQvJNnkkdtYSt3gU2V/QnwVFq\",\"__v\":0}}"
             127.0.0.1:6379>
             ```
-
+- [Nginx image](https://hub.docker.com/_/nginx)
+    - for scaling application
 - build ```docker build -t node-app-image .```
 - run ```docker run --name node-app -d -p 3000:3000 node-app-image```
     - you can remove by: ```docker rm node-app -f```
