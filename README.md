@@ -8,6 +8,12 @@ Uses below:
 - [mongo express](https://github.com/mongo-express/mongo-express) - db admin console
 - [mongoose](https://www.npmjs.com/package/mongoose)
     - ```npm install mongoose```
+- [bcryptjs](https://www.npmjs.com/package/bcryptjs)
+    - for password encryption in users api
+    - ```npm install bcryptjs```
+- [express-session](https://www.npmjs.com/package/express-session) 
+    - [connect-redis](https://www.npmjs.com/package/connect-redis)
+    - ```npm install redis connect-redis express-session```
 ## Docker Usage
 
 - [Node Image](https://hub.docker.com/_/node)
@@ -20,6 +26,17 @@ Uses below:
             -  db.books.insert({"name": "Python"})
             - db.books.find()
     - connect quickly: ```docker exec -it nodedocker_mongo_1 mongo -u "anish" -p "mypassword" ```
+- [Redis Image](https://hub.docker.com/_/redis)
+    - to login: ```docker exec -it nodedocker_redis_1 bash```
+    - use ```redis-cli``` to get into redis cli
+    - to see keys: ```keys *```
+    - example: ```1) "sess:Z1SoWgFRGL5u9U0xK1wX0X55TKnWI1DR"```
+    - to get details on key: ```get 1) "sess:Z1SoWgFRGL5u9U0xK1wX0X55TKnWI1DR"```
+        - result: 
+            ```
+            "{\"cookie\":{\"originalMaxAge\":30000,\"expires\":\"2021-05-10T13:26:40.508Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"user\":{\"_id\":\"60993375bb1356001fbe0aa1\",\"username\":\"anish2\",\"password\":\"$2a$12$hVpYN4t6G4pzh/Zdazj71.B.ebALoQvJNnkkdtYSt3gU2V/QnwVFq\",\"__v\":0}}"
+            127.0.0.1:6379>
+            ```
 
 - build ```docker build -t node-app-image .```
 - run ```docker run --name node-app -d -p 3000:3000 node-app-image```
@@ -70,18 +87,33 @@ Uses below:
 
 ## API tests
 
-- get : http://localhost:3000/api/v1/posts
-- new post: http://localhost:3000/api/v1/posts
-    - from post man do POST request: Body> raw > json
-        ```json
-        {
-            "title": "My node post",
-            "body": "my node post body  "
-        }
-        ```
-- http://localhost:3000/api/v1/posts/6095cbd4fa2dc4001f1ae792
-- path test: http://localhost:3000/api/v1/posts/6095cf242731b80064119567
-
+- Posts
+    - route for API at: [http://localhost:3000/api/v1/posts](http://localhost:3000/api/v1/posts)
+    - get : http://localhost:3000/api/v1/posts
+    - new post: http://localhost:3000/api/v1/posts
+        - from post man do POST request: Body> raw > json
+            ```json
+            {
+                "title": "My node post",
+                "body": "my node post body  "
+            }
+            ```
+    - http://localhost:3000/api/v1/posts/6095cbd4fa2dc4001f1ae792
+    - path test: http://localhost:3000/api/v1/posts/6095cf242731b80064119567
+    - added login for all but get requests
+        - from postman
+            - do login request first
+            - then post request
+- User
+    - route: [http://localhost:3000/api/v1/users](http://localhost:3000/api/v1/users)
+    - signup: [http://localhost:3000/api/v1/users/signup](http://localhost:3000/api/v1/users/signup)
+        - from post man:
+            ```json
+                {
+                    "username": "anish",
+                    "password": "pass"
+                }
+            ```
 ## Video Tutorial
 
 - [DevOps with Docker](https://www.youtube.com/watch?v=9zUHg7xjIqQ)
