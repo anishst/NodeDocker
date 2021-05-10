@@ -12,4 +12,13 @@ services:
                 NODE_ENV: production        
         environment:
             - NODE_ENV=production
+            # PULL values from env vars
+            - MONGO_USER=${MONGO_USER}
+            - MONGO_PASSWORD=${MONGO_PASSWORD}
+            - SESSION_SECRET=${SESSION_SECRET}
         command: node index.js
+    mongo:
+        environment:
+            # YOU Can set env var by export varid=value
+            MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+            MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}    

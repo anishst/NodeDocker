@@ -72,9 +72,16 @@ app.use(
 // middleware to support api post methods
 app.use(express.json());
 
+// test page for node front end
 app.get("/", (req, res) => {
-    res.send("<h1>Hello from Node Express App! </h1>")
-    console.log(" ------------------- Home page was serverd! ---------------------")
+  res.send("<h1 style='color:blue; font-family: Arial Narrow; text-align:center;'>Hello from Node Express App! </h1>")
+  console.log(" ------------------- Home page was serverd! ---------------------")
+})
+
+// test page for api
+app.get("/api/v1", (req, res) => {
+    res.send("api v1")
+    console.log(" ------------------- API was serverd! ---------------------")
 })
 
 //localhost:3000/api/v1/post

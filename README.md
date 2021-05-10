@@ -88,6 +88,21 @@ Uses below:
 
 ### For Production
 - run app for prod env: 
+- make sure to set env vars needed. use this format in linux: ```export ENVAR=VALUE```
+    - MONGO_USER
+    - MONGO_PASSWORD 
+    - SESSION_SECRET
+    - MONGO_INITDB_ROOT_USER
+    - MONGO_INITDB_ROOT_PASSWORD
+    - you can store all these in an ```.env``` file in production server in a secure place to load and have it load on boot by putting in ```.profile``` file add a new line in ```.profile``` file: ```set -o allexport; source /root/.env; set +o allexport```. these should now load automatically
+        ```env
+            NODE_ENV=production
+            MONGO_USER=anish
+            MONGO_PASSWORD=mypassword
+            SESSION_SECRET=secret
+            MONGO_INITDB_ROOT_USERNAME=anish
+            MONGO_INITDB_ROOT_PASSWORD=mypassword
+        ```
 - run: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d```
 - run with forcing a new image build: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build```
 - stop: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml down -v```
