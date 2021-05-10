@@ -73,6 +73,7 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
     res.send("<h1>Hello from Node Express App! </h1>")
+    console.log(" ------------------- Home page was serverd! ---------------------")
 })
 
 //localhost:3000/api/v1/post

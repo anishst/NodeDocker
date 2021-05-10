@@ -39,6 +39,7 @@ Uses below:
             ```
 - [Nginx image](https://hub.docker.com/_/nginx)
     - for scaling application
+
 - build ```docker build -t node-app-image .```
 - run ```docker run --name node-app -d -p 3000:3000 node-app-image```
     - you can remove by: ```docker rm node-app -f```
@@ -76,6 +77,8 @@ Uses below:
 - run app for development; you can make live edits with this one: 
 - run: ```docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d```
 - stop: ```docker-compose -f docker-compose.yml -f docker-compose.dev.yml down```
+- to scale node app using nginx by running 2 instances: ```docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --scale node-app=2```
+    - you can monitor the logs and see requests being shared between the 2 new instances
 - prune unused volumes: ``` docker volume prune```
 - to test retry logic use this by only starting node-app:  ```docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --no-deps node-app```
 - you can view mongo express here: [http://localhost:8081/](http://localhost:8081/)
