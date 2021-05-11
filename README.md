@@ -109,7 +109,7 @@ Uses below:
 
 - Steps
     - on dev machine:
-        1.  build image for Prod env: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml build```
+        1.  build node-app image for Prod env: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml build```
         2.  push image to docker hub: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml push```
     - on prod server:
         1. pull image: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml pull```
