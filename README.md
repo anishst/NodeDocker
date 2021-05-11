@@ -157,6 +157,11 @@ Uses below:
     - to enable: ```docker swarm init```
 -list services: ```docker service --help```
 - [using with docker-compose usage](https://docs.docker.com/compose/compose-file/compose-file-v3/#deploy)
+- deploy our app using swarm: ```docker stack deploy -c docker-compose.yml -c docker-compose.prod.yml myapp ```
+- list nodes: ```docker node ls```
+- list stacks: ```docker stack ls```
+- list services in stack: ```docker stack services myapp```
+- list tasks in stack: ```docker stack ps myapp```
 ## Video Tutorial
 
 - [DevOps with Docker](https://www.youtube.com/watch?v=9zUHg7xjIqQ)
