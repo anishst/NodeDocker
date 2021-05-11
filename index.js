@@ -74,7 +74,7 @@ app.use(express.json());
 
 // test page for node front end
 app.get("/", (req, res) => {
-  res.send("<h1 style='color:blue; font-family: Arial Narrow; text-align:center;'>Hello from Node Express App! a small change </h1>")
+  res.send("<h1 style='color:blue; font-family: Arial Narrow; text-align:center;'>Hello from Node Express App!  </h1>")
   console.log(" ------------------- Home page was serverd! ---------------------")
 })
 
