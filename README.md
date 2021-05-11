@@ -151,6 +151,17 @@ Uses below:
                     "password": "pass"
                 }
             ```
+## Docker Swarm usage
+
+- check if enabled: ```docker info```
+    - to enable: ```docker swarm init```
+-list services: ```docker service --help```
+- [using with docker-compose usage](https://docs.docker.com/compose/compose-file/compose-file-v3/#deploy)
 ## Video Tutorial
 
 - [DevOps with Docker](https://www.youtube.com/watch?v=9zUHg7xjIqQ)
+
+## Tools
+
+- [watchtower](https://github.com/containrrr/watchtower)
+    - A container-based solution for automating Docker container base image updates. [see docs](https://containrrr.dev/watchtower/)

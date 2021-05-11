@@ -5,6 +5,14 @@ services:
             # serve on port 80 in prod
             - "80:80"
     node-app: 
+        # swarm related: https://docs.docker.com/compose/compose-file/compose-file-v3/#deploy
+        deploy:
+            replicas: 8
+            restart_policy: 
+                condition: any
+            updated_config:
+                parallelism: 2
+                delay: 15s
         build: 
             # location of dockerfile
             context: .
