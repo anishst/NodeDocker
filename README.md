@@ -74,27 +74,28 @@ Uses below:
 - rebuild image and run app : ```docker-compose up -d --build```
 - remove app and volumes: ```docker-compose down -v```
 
-## Using docker compose with multiple compose files
+# Using docker compose with multiple compose files
 
-### For Development
+## For Development
 - run app for development; you can make live edits with this one: 
 - run: ```docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d```
-- stop: ```docker-compose -f docker-compose.yml -f docker-compose.dev.yml down```
+- when switching you might need to rebuild volumens: ```docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d -V```
+- stop and remove volumes: ```docker-compose -f docker-compose.yml -f docker-compose.dev.yml down -v```
 - to scale node app using nginx by running 2 instances: ```docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --scale node-app=2```
     - you can monitor the logs and see requests being shared between the 2 new instances
 - prune unused volumes: ``` docker volume prune```
 - to test retry logic use this by only starting node-app:  ```docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --no-deps node-app```
 - you can view mongo express here: [http://localhost:8081/](http://localhost:8081/)
 
-### For Production
-- run app for prod env: 
+## For Production
+ 
 - make sure to set env vars needed. use this format in linux: ```export ENVAR=VALUE```
     - MONGO_USER
     - MONGO_PASSWORD 
     - SESSION_SECRET
     - MONGO_INITDB_ROOT_USER
     - MONGO_INITDB_ROOT_PASSWORD
-    - you can store all these in an ```.env``` file in production server in a secure place to load and have it load on boot by putting in ```.profile``` file add a new line in ```.profile``` file: ```set -o allexport; source /root/.env; set +o allexport```. these should now load automatically
+    - you can store all these in an ```.env``` file in production server in a secure place to load and have it load on boot by putting in ```.profile``` file add a new line in ```nano ~/.profile``` file: ```set -o allexport; source /root/.env; set +o allexport```. these should now load automatically
         ```env
             NODE_ENV=production
             MONGO_USER=anish
@@ -103,9 +104,23 @@ Uses below:
             MONGO_INITDB_ROOT_USERNAME=anish
             MONGO_INITDB_ROOT_PASSWORD=mypassword
         ```
+
+### Running on prod server using docker hub image
+
+- Steps
+    - on dev machine:
+        1.  build image for Prod env: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml build```
+        2.  push image to docker hub: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml push```
+    - on prod server:
+        1. pull image: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml pull```
+        2. run image: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d```
+### Building and running on prod server (not recommended)
 - run: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d```
-- run with forcing a new image build: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build```
-- stop: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml down -v```
+- stop: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml down```
+- for new code changes, run with forcing a new image build: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build```
+- only rebuild node app: ```docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build --no-deps node-app```
+- force recreation of containers even when no change: ````docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --force-recreate```
+
 
 ## API tests
 
